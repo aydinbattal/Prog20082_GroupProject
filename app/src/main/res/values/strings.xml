@@ -7,5 +7,20 @@
     <string name="remember_me">Remember me</string>
     <string name="create_account">Dont have an account? Create one!</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="book">Book</string>
+    <string name="choose_location">Choose location</string>
+    <string name="car_plate_num">Car Plate Number</string>
+    <string name="parking_date">Parking Date</string>
+    <string name="date_placeholder">DD/MM/YYYY</string>
+    <string name="parking_duration">Parking Duration</string>
+    <string name="parking_location">Parking Location</string>
+    <string name="time_placeholder">HH:MM</string>
+    <string name="datetime_placeholder">dd/MMM/YYYY hh:mm</string>
+
+    <string-array name="duration_array">
+        <item>4 Hours</item>
+        <item>8 Hours</item>
+        <item>12 hours</item>
+        <item> Daily Max</item>
+    </string-array>
 </resources>
