@@ -6,4 +6,6 @@
     <string name="forget_password">Forgot password?</string>
     <string name="remember_me">Remember me</string>
     <string name="create_account">Dont have an account? Create one!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
