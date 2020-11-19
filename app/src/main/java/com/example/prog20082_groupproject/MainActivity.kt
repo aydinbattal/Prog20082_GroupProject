@@ -8,7 +8,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-    //test
-        //adam commit test
+    //test from new branch
     }
 }
