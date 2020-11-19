@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Prog20082_GroupProject</string>
+    <string name="login">Log in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forgot password?</string>
+    <string name="remember_me">Remember me</string>
+    <string name="create_account">Dont have an account? Create one!</string>
 </resources>
