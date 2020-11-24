@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Prog20082_GroupProject">
-        <activity android:name=".ParkingPass"></activity>
+        <activity android:name=".RoomPass"></activity>
         <activity android:name=".Map" />
         <activity android:name=".MainActivity">
             <intent-filter>
