@@ -10,8 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Prog20082_GroupProject">
         <activity android:name=".RoomPass"></activity>
-        <activity android:name=".Map" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Map">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
