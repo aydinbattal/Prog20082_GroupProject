@@ -14,5 +14,9 @@ class UserRepo(private val userDao:UserDao) {
         return userDao.getUserByLogin(email,password)
     }
 
+    suspend fun updateUser(user: User){
+        userDao.updateUser(user)
+    }
+
 
 }

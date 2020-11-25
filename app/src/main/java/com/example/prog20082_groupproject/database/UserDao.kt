@@ -1,9 +1,6 @@
 package com.example.prog20082_groupproject.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface UserDao {
@@ -16,6 +13,9 @@ interface UserDao {
 
     @Query("SELECT * FROM Users WHERE email LIKE :email AND password LIKE :password")
     fun getUserByLogin(email: String,password:String): User?
+
+    @Update
+    suspend fun updateUser(user: User)
 
 
 }

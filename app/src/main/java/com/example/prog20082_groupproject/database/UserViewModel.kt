@@ -43,6 +43,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         return matchedUser
     }
 
+    fun updateUser(user: User) = viewModelScope.launch(Dispatchers.IO) {
+        userRepo.updateUser(user)
+    }
+
+
+
 
 
 }
