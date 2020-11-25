@@ -15,6 +15,7 @@
     <string name="booking_time">Time</string>
     <string name="booking_duration">Duration</string>
     <string name="booking_location">Location</string>
+    <string name="save">Save</string>
 
     <string name="date_placeholder">DD/MM/YYYY</string>
     <string name="time_placeholder">HH:MM</string>
@@ -26,6 +27,4 @@
         <item>12 hours</item>
         <item> Daily Max</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
