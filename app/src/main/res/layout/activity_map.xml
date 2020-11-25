@@ -29,22 +29,28 @@
         app:layout_constraintTop_toBottomOf="@+id/mapView">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/btnNearest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/nearest" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/btnDavis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/davis" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/btnHazel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/hazel" />
+
+        <RadioButton
+            android:id="@+id/btnTrafalgar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/trafalgar" />
     </RadioGroup>
 
     <Button
@@ -52,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Continue"
+        android:text="@string/ccontinue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
