@@ -11,10 +11,12 @@
     <string name="choose_location">Choose location</string>
     <string name="student_id">Student ID</string>
     <string name="student_amount">Amount of Students</string>
-    <string name="date_placeholder">DD/MM/YYYY</string>
+    <string name="name">Student Name</string>
     <string name="booking_time">Time</string>
     <string name="booking_duration">Duration</string>
     <string name="booking_location">Location</string>
+
+    <string name="date_placeholder">DD/MM/YYYY</string>
     <string name="time_placeholder">HH:MM</string>
     <string name="datetime_placeholder">dd/MMM/YYYY hh:mm</string>
 

@@ -1,59 +1,134 @@
 package com.example.prog20082_groupproject
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.fragment.app.Fragment
+//import androidx.navigation.fragment.findNavController
+import com.example.prog20082_groupproject.BookingViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.lang.Exception
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class HomeFragment : Fragment(), View.OnClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val TAG = this.toString()
+
+    lateinit var edtName: EditText
+    lateinit var edtStudentId: EditText
+    lateinit var edtEmail: EditText
+    lateinit var btnSave: Button
+    lateinit var fabEditProfile: FloatingActionButton
+
+    lateinit var userViewModel: UserViewModel
+    lateinit var existingUser: User
+
+    var currentUserEmail = SharedPreferencesManager.read(SharedPreferencesManager.EMAIL, "")
+
+    private lateinit var bookingViewModel : BookingViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val root = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val fabBook: FloatingActionButton = root.findViewById(R.id.fabBook)
+
+        root.fabEditProfile.setOnClickListener(this)
+        root.btnSave.setOnClickListener(this)
+
+        fabBook.setOnClickListener {
+//            findNavController().navigate(R.id.action_nav_home_to_add_parking_fragment)
+        }
+
+        edtName = root.edtName
+        edtStudentId = root.edtStudentId
+        edtEmail = root.edtEmail
+        btnSave = root.btnSave
+        fabEditProfile = root.fabEditProfile
+
+        this.disableEdit()
+
+        return root
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
+        bookingViewModel = BookingViewModel()
+        userViewModel = UserViewModel(this.requireActivity().application)
+
+        this.populateProfile()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        bookingViewModel.getAllBookings()
+    }
+
+    fun disableEdit(){
+        edtName.isEnabled = false
+        edtStudentId.isEnabled = false
+        edtEmail.isEnabled = false
+    }
+
+    fun enableEdit(){
+        edtName.isEnabled = true
+        edtStudentId.isEnabled = true
+        edtEmail.isEnabled = true
+    }
+
+    fun populateProfile(){
+        if (currentUserEmail != null){
+            userViewModel.getUserByEmail(currentUserEmail!!)?.observe(this.requireActivity(), {matchedUser ->
+
+                if (matchedUser != null) {
+
+                    this.existingUser = matchedUser
+
+                    Log.d("Home Fragment", "Matched user : " + matchedUser.toString())
+
+                    edtName.setText(matchedUser.name)
+                    edtStudentId.setText(matchedUser.studentId)
+                    edtEmail.setText(matchedUser.email)
+                }
+            })
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    override fun onClick(v: View?) {
+        when(v?.id){
+            fabEditProfile.id -> {
+                this.enableEdit()
+                fabEditProfile.visibility = View.GONE
+                btnSave.visibility = View.VISIBLE
+            }
+            btnSave.id -> {
+                this.disableEdit()
+                fabEditProfile.visibility = View.VISIBLE
+                btnSave.visibility = View.GONE
+
+                this.saveToDB()
+            }
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+    private fun saveToDB(){
+        this.existingUser.name = edtName.text.toString()
+        this.existingUser.studentId = edtStudentId.text.toString()
+        this.existingUser.email = edtEmail.text.toString()
+
+        try{
+            userViewModel.updateUser(existingUser)
+        }catch (ex: Exception){
+            Log.d("Home Fragment", ex.localizedMessage)
+        }
     }
 }
