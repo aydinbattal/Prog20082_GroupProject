@@ -3,6 +3,8 @@
     <string name="app_name1">AdamTest</string>
     <string name="signup_email">Email</string>
     <string name="signup_password">Password</string>
-    <string name="signup_confirmP">Confirm Password</string>
+    <string name="signup_StudId">Student Id</string>
     <string name="signup_button">Sign Up</string>
+    <string name="signup_firstName">First Name</string>\
+    <string name="signup_lastName">Last Name</string>
 </resources>
