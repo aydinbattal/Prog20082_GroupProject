@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Prog20082_GroupProject</string>
-
+    <string name="app_name">SheriBook</string>
     <string name="login">Log in</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -16,6 +15,7 @@
     <string name="booking_time">Time</string>
     <string name="booking_duration">Duration</string>
     <string name="booking_location">Location</string>
+    <string name="save">Save</string>
 
     <string name="date_placeholder">DD/MM/YYYY</string>
     <string name="time_placeholder">HH:MM</string>
@@ -28,11 +28,14 @@
         <item> Daily Max</item>
     </string-array>
 
-    <string name="signup_email">Email</string>
-    <string name="signup_password">Password</string>
-    <string name="signup_StudId">Student Id</string>
-    <string name="signup_button">Sign Up</string>
-    <string name="signup_firstName">First Name</string>\
-    <string name="signup_lastName">Last Name</string>
-    <string name="database_name">Database</string>
+    <string name="nav_header_title">Student Name</string>
+    <string name="nav_header_subtitle">student@sheridancollege.ca</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_support">Support</string>
+    <string name="menu_contact">Contact Us</string>
+
+    <string name="delete_account">Delete Account</string>
+    <string name="log_out">Log Out</string>
+    <string name="call">Call</string>
 </resources>
