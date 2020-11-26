@@ -7,5 +7,6 @@
     <string name="signup_button">Sign Up</string>
     <string name="signup_firstName">First Name</string>\
     <string name="signup_lastName">Last Name</string>
-    <string name="database_name">Database</string>
+    <string name="database_UserName">Database_User</string>
+    <string name="database_BookingName">Database_Booking</string>
 </resources>

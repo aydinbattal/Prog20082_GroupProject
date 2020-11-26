@@ -27,7 +27,7 @@ abstract class LearninCommonsDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     LearninCommonsDatabase::class.java,
-                    R.string.database_name.toString()
+                    R.string.database_UserName.toString()
                 )
                     .fallbackToDestructiveMigration()
                     .build()
