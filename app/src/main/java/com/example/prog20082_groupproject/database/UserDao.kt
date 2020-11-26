@@ -1,5 +1,6 @@
 package com.example.prog20082_groupproject.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -16,6 +17,12 @@ interface UserDao {
 
     @Update
     suspend fun updateUser(user: User)
+
+    @Query("DELETE FROM Users WHERE email LIKE :email")
+    fun deleteUserByEmail(email: String)
+
+    @Query("SELECT * FROM Users")
+    fun getAllUsers(): LiveData<List<User>>
 
 
 }
