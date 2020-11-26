@@ -17,5 +17,8 @@ interface UserDao {
     @Update
     suspend fun updateUser(user: User)
 
+    @Query("DELETE FROM Users WHERE email LIKE :email")
+    fun deleteUserByEmail(email: String)
+
 
 }

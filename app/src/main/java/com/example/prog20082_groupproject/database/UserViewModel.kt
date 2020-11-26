@@ -47,6 +47,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         userRepo.updateUser(user)
     }
 
+    fun deleteUserByEmail(email: String) = viewModelScope.launch(Dispatchers.IO) {
+        userRepo.deleteUserByEmail(email)
+    }
+
 
 
 

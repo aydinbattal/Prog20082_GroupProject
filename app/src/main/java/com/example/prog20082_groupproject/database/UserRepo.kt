@@ -18,5 +18,10 @@ class UserRepo(private val userDao:UserDao) {
         userDao.updateUser(user)
     }
 
+    suspend fun deleteUserByEmail(email: String){
+        userDao.deleteUserByEmail(email)
+    }
+
+
 
 }
