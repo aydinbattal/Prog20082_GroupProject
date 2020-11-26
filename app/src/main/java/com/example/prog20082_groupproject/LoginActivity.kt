@@ -98,7 +98,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 //valid login
                 this.checkRemember()
                 this@LoginActivity.finishAndRemoveTask()
-//                this.goToMain()
+                this.goToHome()
             }else{
                 //invalid login
                 Toast.makeText(this, "Incorrect email or password. Try again!", Toast.LENGTH_LONG).show()

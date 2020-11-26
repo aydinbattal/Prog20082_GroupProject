@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.prog20082_groupproject.BookingViewModel
+import com.example.prog20082_groupproject.database.BookingViewModel
 import com.example.prog20082_groupproject.database.User
 import com.example.prog20082_groupproject.database.UserViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -72,7 +72,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
 
-        bookingViewModel.getAllBookings()
+//        bookingViewModel.getAllBookings()
     }
 
     fun disableEdit(){

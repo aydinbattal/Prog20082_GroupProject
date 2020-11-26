@@ -6,7 +6,7 @@
     <string name="forget_password">Forgot password?</string>
     <string name="remember_me">Remember me</string>
     <string name="create_account">Dont have an account? <i><u>Create one!</u></i></string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="book">Book</string>
     <string name="choose_location">Choose location</string>
     <string name="student_id">Student ID</string>
