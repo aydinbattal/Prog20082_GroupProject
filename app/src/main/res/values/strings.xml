@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Prog20082_GroupProject</string>
+    <string name="app_name">SheriBook</string>
     <string name="login">Log in</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -27,4 +27,15 @@
         <item>12 hours</item>
         <item> Daily Max</item>
     </string-array>
+
+    <string name="nav_header_title">Student Name</string>
+    <string name="nav_header_subtitle">student@sheridancollege.ca</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_support">Support</string>
+    <string name="menu_contact">Contact Us</string>
+
+    <string name="delete_account">Delete Account</string>
+    <string name="log_out">Log Out</string>
+    <string name="call">Call</string>
 </resources>
