@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
+import com.example.prog20082_groupproject.database.UserViewModel
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun fetchAllUsers(){
-        userViewModel.allUsers.observe(this@LogInActivity, {
+        userViewModel.allUsers.observe(this@LoginActivity, {
             for(user in it){
                 Log.d(TAG, user.toString())
             }
@@ -93,11 +93,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val email = edtEmail.text.toString()
         val password = DataValidations().encryptPassword(edtPassword.text.toString())
 
-        userViewModel.getUserByLoginInfo(email, password)?.observe(this@LogInActivity, {matchedUser ->
+        userViewModel.getUserByLogin(email, password)?.observe(this@LoginActivity, {matchedUser ->
             if ( matchedUser != null){
                 //valid login
                 this.checkRemember()
-                this@LogInActivity.finishAndRemoveTask()
+                this@LoginActivity.finishAndRemoveTask()
 //                this.goToMain()
             }else{
                 //invalid login
@@ -122,11 +122,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun goToHome(){
         val homeIntent = Intent(this, HomeActivity::class.java)
         startActivity(homeIntent)
-        this@LogInActivity.finishAffinity()
+        this@LoginActivity.finishAffinity()
     }
 
     private fun goToCreateAccount(){
-        val createAccountIntent = Intent(this, SignUpActivity::class.java)
+        val createAccountIntent = Intent(this, SignUp::class.java)
         startActivity(createAccountIntent)
     }
 }
