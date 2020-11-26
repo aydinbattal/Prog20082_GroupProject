@@ -116,9 +116,9 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
             googleMap.uiSettings.isMyLocationButtonEnabled = true
             googleMap.uiSettings.isScrollGesturesEnabled = true
 
-            googleMap.addMarker(
-                MarkerOptions().position(this.currentLocation).title("You're Here")
-            )
+       //     googleMap.addMarker(
+         //       MarkerOptions().position(this.currentLocation).title("You're Here")
+
 
             this.map = googleMap
         }else{
