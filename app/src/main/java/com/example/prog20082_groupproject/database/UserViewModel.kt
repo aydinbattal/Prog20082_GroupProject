@@ -2,6 +2,7 @@ package com.example.prog20082_groupproject.database
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -12,10 +13,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     private val userRepo : UserRepo
     private var matchedUser : MutableLiveData<User>?
+    var allUsers: LiveData<List<User>>
 
     init {
         val userDao = LearninCommonsDatabase.getDatabase(application).userDao()
         userRepo = UserRepo(userDao)
+        allUsers = userRepo.allUsers
 
         matchedUser = MutableLiveData()
     }
