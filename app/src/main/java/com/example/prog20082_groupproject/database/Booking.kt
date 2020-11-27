@@ -7,7 +7,7 @@ import androidx.room.Entity
 data class Booking(
     @ColumnInfo(name = "roomNumber") var roomNumber: String?,
     @ColumnInfo(name = "campusName") var campusName: String?,
-    @ColumnInfo(name = "studentID") var studentID: String?,
+    @ColumnInfo(name = "studentID") var studentID: String,
     @ColumnInfo(name = "studentAmount") var studentAmount: Int?,
     @ColumnInfo(name = "duration") var duration: String?,
     @ColumnInfo(name = "timeSlot") var timeSlot: String?
