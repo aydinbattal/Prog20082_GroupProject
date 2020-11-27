@@ -18,7 +18,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import com.example.prog20082_groupproject.R
 import com.example.prog20082_groupproject.SharedPreferencesManager
-import com.example.prog20082_groupproject.UserViewModel
+import com.example.prog20082_groupproject.database.UserViewModel
 
 class HomeActivity : AppCompatActivity() {
 
@@ -93,7 +93,7 @@ class HomeActivity : AppCompatActivity() {
 
         this.finishAffinity()
         SharedPreferencesManager.removeAll()
-        val createAccountIntent = Intent(this, SignUpActivity::class.java)
+        val createAccountIntent = Intent(this, SignUp::class.java)
         startActivity(createAccountIntent)
 
     }

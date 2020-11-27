@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
+import com.example.prog20082_groupproject.database.UserViewModel
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -25,14 +25,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        SharedPreferencesManager.init(applicationContext)
-        this.fetchPreferences()
-
         tvCreateAccount = findViewById(R.id.tvCreateAccount)
         edtEmail = findViewById(R.id.edtEmail)
         edtPassword = findViewById(R.id.edtPassword)
         btnLogIn = findViewById(R.id.btnLogIn)
         swtRemember = findViewById(R.id.swtRemember)
+
+        SharedPreferencesManager.init(applicationContext)
+        this.fetchPreferences()
 
         tvCreateAccount.setOnClickListener(this)
         btnLogIn.setOnClickListener(this)
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun fetchAllUsers(){
-        userViewModel.allUsers.observe(this@LogInActivity, {
+        userViewModel.allUsers.observe(this@LoginActivity, {
             for(user in it){
                 Log.d(TAG, user.toString())
             }
@@ -93,12 +93,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val email = edtEmail.text.toString()
         val password = DataValidations().encryptPassword(edtPassword.text.toString())
 
-        userViewModel.getUserByLoginInfo(email, password)?.observe(this@LogInActivity, {matchedUser ->
+        userViewModel.getUserByLogin(email, password)?.observe(this@LoginActivity, {matchedUser ->
             if ( matchedUser != null){
                 //valid login
                 this.checkRemember()
-                this@LogInActivity.finishAndRemoveTask()
-//                this.goToMain()
+                this@LoginActivity.finishAndRemoveTask()
+                this.goToHome()
             }else{
                 //invalid login
                 Toast.makeText(this, "Incorrect email or password. Try again!", Toast.LENGTH_LONG).show()
@@ -122,11 +122,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun goToHome(){
         val homeIntent = Intent(this, HomeActivity::class.java)
         startActivity(homeIntent)
-        this@LogInActivity.finishAffinity()
+        this@LoginActivity.finishAffinity()
     }
 
     private fun goToCreateAccount(){
-        val createAccountIntent = Intent(this, SignUpActivity::class.java)
+        val createAccountIntent = Intent(this, SignUp::class.java)
         startActivity(createAccountIntent)
     }
 }

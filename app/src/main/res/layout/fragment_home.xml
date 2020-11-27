@@ -17,7 +17,6 @@
         android:background="@drawable/edit_text_style"
         android:ems="10"
         android:hint="@string/name"
-        android:maxLength="9"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

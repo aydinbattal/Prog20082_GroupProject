@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-//import androidx.navigation.fragment.findNavController
-import com.example.prog20082_groupproject.BookingViewModel
+import androidx.navigation.fragment.findNavController
+import com.example.prog20082_groupproject.database.BookingViewModel
+import com.example.prog20082_groupproject.database.User
+import com.example.prog20082_groupproject.database.UserViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.lang.Exception
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
@@ -39,18 +40,18 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         val fabBook: FloatingActionButton = root.findViewById(R.id.fabBook)
 
-        root.fabEditProfile.setOnClickListener(this)
-        root.btnSave.setOnClickListener(this)
-
         fabBook.setOnClickListener {
-//            findNavController().navigate(R.id.action_nav_home_to_add_parking_fragment)
+            findNavController().navigate(R.id.action_nav_home_to_booking_fragment)
         }
 
-        edtName = root.edtName
-        edtStudentId = root.edtStudentId
-        edtEmail = root.edtEmail
-        btnSave = root.btnSave
-        fabEditProfile = root.fabEditProfile
+        edtName = root.findViewById(R.id.edtName)
+        edtStudentId = root.findViewById(R.id.edtStudentId)
+        edtEmail = root.findViewById(R.id.edtEmail)
+        btnSave = root.findViewById(R.id.btnSave)
+        fabEditProfile = root.findViewById(R.id.fabEditProfile)
+
+        fabEditProfile.setOnClickListener(this)
+        btnSave.setOnClickListener(this)
 
         this.disableEdit()
 
@@ -69,7 +70,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
 
-        bookingViewModel.getAllBookings()
+//        bookingViewModel.getAllBookings()
     }
 
     fun disableEdit(){
@@ -94,8 +95,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
                     Log.d("Home Fragment", "Matched user : " + matchedUser.toString())
 
-                    edtName.setText(matchedUser.name)
-                    edtStudentId.setText(matchedUser.studentId)
+                    edtName.setText(matchedUser.firstname + " " + matchedUser.lastname)
+                    edtStudentId.setText(matchedUser.studentID)
                     edtEmail.setText(matchedUser.email)
                 }
             })
@@ -121,8 +122,13 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
 
     private fun saveToDB(){
-        this.existingUser.name = edtName.text.toString()
-        this.existingUser.studentId = edtStudentId.text.toString()
+        val firstSpace: Int = edtName.text.indexOf(" ") // detect the first space character
+        val firstName: String = edtName.text.substring(0, firstSpace) // get everything upto the first space character
+        val lastName: String = edtName.text.substring(firstSpace).trim() // get everything after the first space, trimming the spaces off
+
+        this.existingUser.firstname = firstName
+        this.existingUser.lastname = lastName
+        this.existingUser.studentID = edtStudentId.text.toString()
         this.existingUser.email = edtEmail.text.toString()
 
         try{
