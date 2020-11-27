@@ -25,14 +25,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        SharedPreferencesManager.init(applicationContext)
-        this.fetchPreferences()
-
         tvCreateAccount = findViewById(R.id.tvCreateAccount)
         edtEmail = findViewById(R.id.edtEmail)
         edtPassword = findViewById(R.id.edtPassword)
         btnLogIn = findViewById(R.id.btnLogIn)
         swtRemember = findViewById(R.id.swtRemember)
+
+        SharedPreferencesManager.init(applicationContext)
+        this.fetchPreferences()
 
         tvCreateAccount.setOnClickListener(this)
         btnLogIn.setOnClickListener(this)

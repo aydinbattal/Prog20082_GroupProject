@@ -12,7 +12,7 @@ interface BookingDao {
     @Delete
     fun deleteBooking(booking: Booking)
 
-    @Query("SELECT * FROM Users")
+    @Query("SELECT * FROM Bookings")
     fun getAllBooking() : LiveData<List<Booking>>
 
     @Query("SELECT * FROM Bookings WHERE studentID LIKE :studentID")

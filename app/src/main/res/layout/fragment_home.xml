@@ -17,12 +17,10 @@
         android:background="@drawable/edit_text_style"
         android:ems="10"
         android:hint="@string/name"
-        android:maxLength="9"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center_horizontal"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtStudentId"

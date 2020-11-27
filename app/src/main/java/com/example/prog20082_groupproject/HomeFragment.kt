@@ -63,7 +63,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        bookingViewModel = BookingViewModel()
+//        bookingViewModel = BookingViewModel()
         userViewModel = UserViewModel(this.requireActivity().application)
 
         this.populateProfile()
