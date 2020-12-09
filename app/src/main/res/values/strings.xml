@@ -40,6 +40,19 @@
     <string name="delete_account">Delete Account</string>
     <string name="log_out">Log Out</string>
     <string name="call">Call</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="signup_email">Email</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_StudId">Student Id</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="signup_firstName">First Name</string>\
+    <string name="signup_lastName">Last Name</string>
+    <string name="database_UserName">Database_User</string>
+    <string name="database_BookingName">Database_Booking</string>
+
+    <string name="davis">Davis Campus</string>
+    <string name="hazel">Hazel McCallion Campus</string>
+    <string name="trafalgar">Trafalgar Campus</string>
+    <string name="nearest">Nearest Campus</string>
+    <string name="ccontinue">Continue</string>
 </resources>

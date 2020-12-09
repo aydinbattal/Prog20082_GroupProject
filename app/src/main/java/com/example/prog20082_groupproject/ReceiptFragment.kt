@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prog20082_groupproject.database.Booking
+import com.example.prog20082_groupproject.database.BookingViewModel
 
 class ReceiptFragment : Fragment() {
     private lateinit var bookingViewModel : BookingViewModel

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prog20082_groupproject.database.Booking
 
 /**
  * Prog20082_GroupProject created by aydin
@@ -42,9 +43,9 @@ class ReceiptAdapter(
         var tvLocationBooked: TextView = itemView.findViewById(R.id.tvLocationBooked)
 
         fun bind(receipt: Booking, clickListener: OnItemClickListener){
-            tvDateBooked.setText(receipt.parkingDate.toString())
-            tvStudentIdBooked.setText(receipt.buildingCode.toString())
-            tvStudentAmtBooked.setText(receipt.unitNumber.toString())
+            tvDateBooked.setText(receipt.bookingDate.toString())
+            tvStudentIdBooked.setText(receipt.studentID.toString())
+            tvStudentAmtBooked.setText(receipt.studentAmount.toString())
             tvLocationBooked.setText(receipt.duration.toString())
 
             itemView.setOnClickListener{
