@@ -14,7 +14,7 @@
         android:background="@drawable/edit_text_style">
 
         <TextView
-            android:id="@+id/tvBookingDate"
+            android:id="@+id/tvDateBooked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/datetime_placeholder"
@@ -43,7 +43,7 @@
             android:background="@drawable/edit_text_style"/>
 
         <TextView
-            android:id="@+id/tvStudentId"
+            android:id="@+id/tvStudentIdBooked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="#########"
@@ -67,7 +67,7 @@
             android:background="@drawable/edit_text_style"/>
 
         <TextView
-            android:id="@+id/tvStudentAmt"
+            android:id="@+id/tvStudentAmtBooked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="#"
@@ -92,7 +92,7 @@
             android:background="@drawable/edit_text_style"/>
 
         <TextView
-            android:id="@+id/tvBookingLocation"
+            android:id="@+id/tvLocationBooked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="##"
@@ -117,7 +117,7 @@
             android:background="@drawable/edit_text_style"/>
 
         <TextView
-            android:id="@+id/tvBookingTime"
+            android:id="@+id/tvTimeBooked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="##"
