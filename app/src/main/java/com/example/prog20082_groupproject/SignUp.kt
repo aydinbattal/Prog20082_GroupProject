@@ -52,11 +52,7 @@ class SignUp : AppCompatActivity() {
         }
         else{
             userViewModel.getUserByEmail(tempEmail)?.observe(this@SignUp,{matchedUser ->
-                if (matchedUser != null) {
-                    tempB = false
-                }
-                else
-                    tempB = true
+                tempB = matchedUser == null
             })
             if(!tempB){
                 edtEmail.error = "Email is already used"
