@@ -15,8 +15,11 @@ class BookingRepo(
     suspend fun deleteBooking(booking: Booking){
         bookingDao.deleteBooking(booking)
     }
+    suspend fun updateBooking(booking: Booking){
+        bookingDao.updateBooking(booking)
+    }
 
-    suspend fun getBookingByStudID(studentID:String) : Booking?{
-        return bookingDao.getBookingByStudID(studentID)
+    suspend fun getBookingByCampusNandRoomN(campusName:String,roomNumber:String) : Booking?{
+        return bookingDao.getBookingByCampusNandRoomN(campusName,roomNumber)
     }
 }

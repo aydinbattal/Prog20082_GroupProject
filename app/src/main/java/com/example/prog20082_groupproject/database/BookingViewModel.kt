@@ -16,11 +16,15 @@ class BookingViewModel(application: Application) : AndroidViewModel(application)
     var allBooking: LiveData<List<Booking>>
     private var matchedBooking : MutableLiveData<Booking>?
 
+
     init {
         val bookingDao = BookingDataBase.getDataBase(application).bookingDao()
         bookingRepo = BookingRepo(bookingDao)
         allBooking = bookingRepo.allBooking
         matchedBooking = MutableLiveData()
+    }
+    fun updateBooking(booking: Booking) = viewModelScope.launch(Dispatchers.IO) {
+        bookingRepo.updateBooking(booking)
     }
 
     fun insertAll(booking: Booking) = viewModelScope.launch(Dispatchers.IO) {
@@ -31,15 +35,12 @@ class BookingViewModel(application: Application) : AndroidViewModel(application)
         bookingRepo.deleteBooking(booking)
     }
 
-    private fun getBookingByStudIdC(studentID :String) = viewModelScope.launch(Dispatchers.IO) {
-        val booking : Booking? = bookingRepo.getBookingByStudID(studentID)
+    private fun getBookingC(campusName:String,roomNumber:String) = viewModelScope.launch(Dispatchers.IO) {
+        val booking : Booking? = bookingRepo.getBookingByCampusNandRoomN(campusName,roomNumber)
         matchedBooking?.postValue(booking)
     }
-    fun getUserByStudentID(studentID: String) : MutableLiveData<Booking>?{
-        getBookingByStudIdC(studentID)
+    fun getUserByStudentID(campusName: String,roomNumber: String) : MutableLiveData<Booking>?{
+        getBookingC(campusName,roomNumber)
         return matchedBooking
     }
-
-
-
 }
