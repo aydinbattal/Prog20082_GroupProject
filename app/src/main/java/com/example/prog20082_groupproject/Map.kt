@@ -60,6 +60,16 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
+    fun onClick(v:View?){
+        if(v != null){
+            when(v.id){
+                btnContinue.id ->{
+
+                }
+            }
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         locationManager.requestLocationUpdates(locationCallback)
@@ -118,7 +128,14 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
 
        //     googleMap.addMarker(
          //       MarkerOptions().position(this.currentLocation).title("You're Here")
-
+            googleMap.setOnMarkerClickListener { marker ->
+                if (marker.isInfoWindowShown) {
+                    marker.hideInfoWindow()
+                } else {
+                    marker.showInfoWindow()
+                }
+                true
+            }
 
             this.map = googleMap
         }else{
