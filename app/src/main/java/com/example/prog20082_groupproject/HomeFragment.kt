@@ -14,8 +14,6 @@ import com.example.prog20082_groupproject.database.User
 import com.example.prog20082_groupproject.database.UserViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-//import kotlinx.android.synthetic.main.fragment_profile.view.*
-
 class HomeFragment : Fragment(), View.OnClickListener {
 
     private val TAG = this.toString()
@@ -64,6 +62,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         super.onCreate(savedInstanceState)
 
 //        bookingViewModel = BookingViewModel()
+        bookingViewModel = BookingViewModel(this.requireActivity().application)
         userViewModel = UserViewModel(this.requireActivity().application)
 
         this.populateProfile()
@@ -89,21 +88,19 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     fun populateProfile(){
         if (currentUserEmail != null){
-            userViewModel.getUserByEmail(currentUserEmail!!)?.observe(
-                this.requireActivity(),
-                { matchedUser ->
+            userViewModel.getUserByEmail(currentUserEmail!!)?.observe(this.requireActivity(), {matchedUser ->
 
-                    if (matchedUser != null) {
+                if (matchedUser != null) {
 
-                        this.existingUser = matchedUser
+                    this.existingUser = matchedUser
 
-                        Log.d("Home Fragment", "Matched user : " + matchedUser.toString())
+                    Log.d("Home Fragment", "Matched user : " + matchedUser.toString())
 
-                        edtName.setText(matchedUser.firstname + matchedUser.lastname)
-                        edtStudentId.setText(matchedUser.studentID)
-                        edtEmail.setText(matchedUser.email)
-                    }
-                })
+                    edtName.setText(matchedUser.firstname + " " + matchedUser.lastname)
+                    edtStudentId.setText(matchedUser.studentID)
+                    edtEmail.setText(matchedUser.email)
+                }
+            })
         }
     }
 
@@ -126,7 +123,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
 
     private fun saveToDB(){
-        //todo: this is last thing done, fix errors and try to run app
         val firstSpace: Int = edtName.text.indexOf(" ") // detect the first space character
         val firstName: String = edtName.text.substring(0, firstSpace) // get everything upto the first space character
         val lastName: String = edtName.text.substring(firstSpace).trim() // get everything after the first space, trimming the spaces off

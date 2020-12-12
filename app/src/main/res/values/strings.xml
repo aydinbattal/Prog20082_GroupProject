@@ -6,7 +6,7 @@
     <string name="forget_password">Forgot password?</string>
     <string name="remember_me">Remember me</string>
     <string name="create_account">Dont have an account? <i><u>Create one!</u></i></string>
-
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="book">Book</string>
     <string name="choose_location">Choose location</string>
     <string name="student_id">Student ID</string>
@@ -32,6 +32,8 @@
     <string name="nav_header_subtitle">student@sheridancollege.ca</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="menu_home">Home</string>
+    <string name="menu_history">History</string>
+    <string name="menu_receipt">View Receipts</string>
     <string name="menu_support">Support</string>
     <string name="menu_contact">Contact Us</string>
 
@@ -47,4 +49,10 @@
     <string name="signup_lastName">Last Name</string>
     <string name="database_UserName">Database_User</string>
     <string name="database_BookingName">Database_Booking</string>
+
+    <string name="davis">Davis Campus</string>
+    <string name="hazel">Hazel McCallion Campus</string>
+    <string name="trafalgar">Trafalgar Campus</string>
+    <string name="nearest">Nearest Campus</string>
+    <string name="ccontinue">Continue</string>
 </resources>

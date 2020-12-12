@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".SignUp" />
+        <activity android:name=".Map"/>
         <activity android:name=".HomeActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -21,6 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAF5NgYkX9-dRLGaGz5Es5I_jUIaJhHg9E"
+            />
 
         <meta-data
             android:name="preloaded_fonts"
