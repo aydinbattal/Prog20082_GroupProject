@@ -87,7 +87,6 @@ class SignUp : AppCompatActivity() {
 
         var userViewModel = UserViewModel(this.application)
         userViewModel.insertAll(user)
-
         val homeIntent = Intent(this,HomeActivity::class.java)
         startActivity(homeIntent)
         this@SignUp.finishAffinity()
