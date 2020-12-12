@@ -23,7 +23,7 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var location: Location
     private lateinit var currentLocation : LatLng
     private var map: GoogleMap? = null
-    private val DEFAULT_ZOOM : Float = 15.0F  //1: world, 5: landmass/continent, 10: city, 15: streets, 20: building
+    private val DEFAULT_ZOOM : Float = 8.0F  //1: world, 5: landmass/continent, 10: city, 15: streets, 20: building
     private lateinit var locationCallback: LocationCallback
     val davisCampus = LatLng(43.6560, -79.7387)
     val hazelMcCallionCampus = LatLng(43.4692, -79.6986)
@@ -41,7 +41,7 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
 
 
         this.locationManager = LocationManager(this@Map)
-        this.currentLocation = LatLng(0.0, 0.0)
+        this.currentLocation = LatLng(43.6560, -79.7387)
 
         if (LocationManager.locationPermissionsGranted){
             this.getLastLocation()
