@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.prog20082_groupproject.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_support"
+            app:destination="@id/nav_support" />
+
+        <action
+            android:id="@+id/action_nav_home_to_booking_fragment"
+            app:destination="@id/bookingFragment"
+            app:popUpTo="@id/nav_home"
+            />
+
+        <action
+            android:id="@+id/action_nav_home_to_receipt_fragment"
+            app:destination="@id/receiptFragment"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_support"
+        android:name="com.example.prog20082_groupproject.SupportFragment"
+        android:label="@string/menu_support"
+        tools:layout="@layout/fragment_support" />
+
+    <fragment
+        android:id="@+id/bookingFragment"
+        android:name="com.example.prog20082_groupproject.BookingFragment"
+        android:label="@string/book"
+        tools:layout="@layout/fragment_booking"
+        />
+
+    <fragment
+        android:id="@+id/receiptFragment"
+        android:name="com.example.prog20082_groupproject.ReceiptFragment"
+        android:label="@string/menu_receipt"
+        tools:layout="@layout/fragment_receipt"
+        />
+</navigation>
