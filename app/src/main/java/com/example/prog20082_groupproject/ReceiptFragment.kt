@@ -50,7 +50,8 @@ class ReceiptFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        bookingViewModel.getAllBookings()
+        bookingViewModel.allBooking
+//        bookingViewModel.getAllBookings()
         this.getReceiptList()
     }
 
