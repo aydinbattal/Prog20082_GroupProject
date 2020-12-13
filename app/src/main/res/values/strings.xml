@@ -22,10 +22,9 @@
     <string name="datetime_placeholder">dd/MMM/YYYY hh:mm</string>
 
     <string-array name="duration_array">
-        <item>4 Hours</item>
-        <item>8 Hours</item>
-        <item>12 hours</item>
-        <item> Daily Max</item>
+        <item>1 Hours</item>
+        <item>2 Hours</item>
+        <item>3 hours</item>
     </string-array>
 
     <string name="nav_header_title">Student Name</string>

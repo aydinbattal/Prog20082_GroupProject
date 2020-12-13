@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.WindowManager
 import com.example.prog20082_groupproject.database.Booking
 import com.example.prog20082_groupproject.database.BookingViewModel
 import com.example.prog20082_groupproject.database.User
@@ -14,19 +15,25 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bookingViewModel = BookingViewModel(this.application)
-        prePopulateBooking()
 
+        //todo: find a way to prepopulate, this doesnt work
+//        bookingViewModel = BookingViewModel(this.application)
+//        prePopulateBooking()
 
+        // This is used to hide the status bar and make
+        // the splash screen as a full screen activity.
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
+        // we used the postDelayed(Runnable, time) method
+        // to send a message with a delayed time.
         Handler().postDelayed({
-            // This method will be executed once the timer is over
-            // Start your app main activity
-
-            startActivity(Intent(this,MainActivity::class.java))
-
-            // close this activity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
             finish()
-        }, SPLASH_TIME_OUT)
+        }, 3000) // 3000 is the delayed time in milliseconds.
 
     }
 

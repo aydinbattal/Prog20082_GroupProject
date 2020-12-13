@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prog20082_groupproject.database.Booking
 import com.example.prog20082_groupproject.database.BookingViewModel
 
-class ReceiptFragment : Fragment() {
+class ReceiptFragment : Fragment(), OnItemClickListener {
     private lateinit var bookingViewModel : BookingViewModel
 
     private lateinit var rvReceipts : RecyclerView
@@ -44,7 +44,7 @@ class ReceiptFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        bookingViewModel = BookingViewModel()
+        bookingViewModel = BookingViewModel(this.requireActivity().application)
     }
 
     override fun onResume() {
@@ -56,13 +56,17 @@ class ReceiptFragment : Fragment() {
     }
 
     fun getReceiptList(){
-        this.bookingViewModel.bookingList.observe(viewLifecycleOwner, {bookingList ->
+        this.bookingViewModel.allBooking.observe(viewLifecycleOwner, {bookingList ->
             if (bookingList != null){
                 receiptsList.clear()
                 receiptsList.addAll(bookingList)
                 viewAdapter.notifyDataSetChanged()
             }
         })
+    }
+
+    override fun onItemClicked(receipt: Booking) {
+        TODO("Not yet implemented")
     }
 
 }

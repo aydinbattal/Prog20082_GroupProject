@@ -65,6 +65,7 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
+
     fun onClick(v:View?){
         if(v != null){
             when(v.id){
@@ -90,8 +91,10 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
         return true
     }
     private fun sendRoomSelection(){
-        //  val sendRoomIntent = Intent(this, BookingFragment::class.java)
-        //  startActivity(sendRoomIntent)
+        val sendRoomIntent = Intent(this, BookingFragment::class.java)
+        //todo: store room number and chosen campus in a variable and send them
+        sendRoomIntent.putExtra(roomnumber.toString(),campusName.toString())
+        startActivity(sendRoomIntent)
     }
     override fun onPause() {
         super.onPause()
