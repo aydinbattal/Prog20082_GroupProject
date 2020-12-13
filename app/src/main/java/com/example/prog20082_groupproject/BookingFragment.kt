@@ -22,7 +22,8 @@ class BookingFragment : Fragment(), View.OnClickListener {
     private lateinit var edtStudentAmt: EditText
     private lateinit var edtTime: EditText
     private lateinit var spnDuration: Spinner
-    private lateinit var tvBookingLocationChosen: TextView
+    private lateinit var tvBookedCampus: TextView
+    private lateinit var tvBookedRoom: TextView
     private lateinit var btnBook: Button
 
     private var selectedDuration: Long = 1
@@ -39,7 +40,8 @@ class BookingFragment : Fragment(), View.OnClickListener {
 
         edtStudentId = root.findViewById(R.id.edtStudentId)
         edtStudentAmt = root.findViewById(R.id.edtStudentAmt)
-        tvBookingLocationChosen = root.findViewById(R.id.tvBookingLocationChosen)
+        tvBookedCampus = root.findViewById(R.id.tvBookedCampus)
+        tvBookedRoom = root.findViewById(R.id.tvBookedRoom)
         edtTime = root.findViewById(R.id.edtTime)
         edtTime.isFocusable = false
         edtTime.setOnClickListener(this)
@@ -83,7 +85,8 @@ class BookingFragment : Fragment(), View.OnClickListener {
                 R.id.btnBook -> {
                     newBooking.studentID = edtStudentId.text.toString()
                     newBooking.studentAmount = edtStudentAmt.text.toString().toInt()
-                    newBooking.campusName = tvBookingLocationChosen.text.toString()
+                    newBooking.campusName = tvBookedCampus.text.toString()
+                    newBooking.roomNumber = tvBookedRoom.text.toString()
                     newBooking.duration = selectedDuration.toString()
 
                     Log.e(TAG, "New Booking : " + newBooking.toString())
