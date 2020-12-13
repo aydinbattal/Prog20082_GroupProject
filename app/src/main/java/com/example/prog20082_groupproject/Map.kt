@@ -1,3 +1,5 @@
+
+
 package com.example.prog20082_groupproject
 
 import android.content.Intent
@@ -15,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_map.*
@@ -87,8 +90,8 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
         return true
     }
     private fun sendRoomSelection(){
-        val sendRoomIntent = Intent(this, BookingFragment::class.java)
-        startActivity(sendRoomIntent)
+        //  val sendRoomIntent = Intent(this, BookingFragment::class.java)
+        //  startActivity(sendRoomIntent)
     }
     override fun onPause() {
         super.onPause()
@@ -96,9 +99,9 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<out String>,
+            grantResults: IntArray
     ) {
 //        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode){
@@ -141,11 +144,12 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
             googleMap.uiSettings.isMyLocationButtonEnabled = true
             googleMap.uiSettings.isScrollGesturesEnabled = true
 
-       //     googleMap.addMarker(
-         //       MarkerOptions().position(this.currentLocation).title("You're Here")
+            //     googleMap.addMarker(
+            //       MarkerOptions().position(this.currentLocation).title("You're Here")
             googleMap.setOnMarkerClickListener { marker ->
                 if (marker.isInfoWindowShown) {
                     marker.hideInfoWindow()
+                    //      marker.s
                 } else {
                     marker.showInfoWindow()
                 }
@@ -160,17 +164,17 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
 
     private fun addMarkerOnMap(location: LatLng){
         if (this.map != null){
-    ///        this.map!!.addMarker(
-    ///            MarkerOptions().position(location).title("Current Location")
-   ///         )
+            ///        this.map!!.addMarker(
+            ///            MarkerOptions().position(location).title("Current Location")
+            ///         )
             this.map!!.addMarker(
-                MarkerOptions().position(davisCampus).title("Davis Campus (Brampton)")
+                    MarkerOptions().position(davisCampus).title("Davis Campus (Brampton)").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
             )
             this.map!!.addMarker(
-                MarkerOptions().position(hazelMcCallionCampus).title("Hazel McCallion Campus (Mississauga)")
+                    MarkerOptions().position(hazelMcCallionCampus).title("Hazel McCallion Campus (Mississauga)").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
             )
             this.map!!.addMarker(
-                MarkerOptions().position(trafalgarCampus).title("Trafalgar Campus (Oakville)")
+                    MarkerOptions().position(trafalgarCampus).title("Trafalgar Campus (Oakville)").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
             )
 
             this.map!!.animateCamera(CameraUpdateFactory.newLatLngZoom(location, DEFAULT_ZOOM))
