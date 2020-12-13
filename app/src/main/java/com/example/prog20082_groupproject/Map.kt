@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -64,7 +65,10 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
         if(v != null){
             when(v.id){
                 btnContinue.id ->{
-
+                    if (validateAnswer()){
+                        finish()
+                        startActivity(intent)
+                    }
                 }
             }
         }
@@ -74,7 +78,14 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
         super.onResume()
         locationManager.requestLocationUpdates(locationCallback)
     }
-
+    fun validateAnswer(): Boolean {
+        if (radioGroup.checkedRadioButtonId == -1) {
+            val t = Toast.makeText(this@Map, "Please select at least one answer", Toast.LENGTH_SHORT)
+            t.show()
+            return false
+        }
+        return true
+    }
     override fun onPause() {
         super.onPause()
         locationManager.fusedLocationProviderClient?.removeLocationUpdates(locationCallback)
@@ -159,6 +170,7 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
             )
 
             this.map!!.animateCamera(CameraUpdateFactory.newLatLngZoom(location, DEFAULT_ZOOM))
+
         }
     }
 }
