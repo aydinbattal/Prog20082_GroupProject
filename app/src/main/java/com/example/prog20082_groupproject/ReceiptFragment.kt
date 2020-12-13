@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ReceiptFragment : Fragment() {
+class ReceiptFragment : Fragment(), OnItemClickListener {
     private lateinit var bookingViewModel : BookingViewModel
 
     private lateinit var rvReceipts : RecyclerView
@@ -42,7 +42,7 @@ class ReceiptFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        bookingViewModel = BookingViewModel()
+        bookingViewModel = BookingViewModel(this.requireActivity().application)
     }
 
     override fun onResume() {
@@ -53,7 +53,7 @@ class ReceiptFragment : Fragment() {
     }
 
     fun getReceiptList(){
-        this.bookingViewModel.bookingList.observe(viewLifecycleOwner, {bookingList ->
+        this.bookingViewModel.allBooking.observe(viewLifecycleOwner, {bookingList ->
             if (bookingList != null){
                 receiptsList.clear()
                 receiptsList.addAll(bookingList)
@@ -62,4 +62,8 @@ class ReceiptFragment : Fragment() {
         })
     }
 
+}
+
+override fun onItemClicked(receipt: Booking) {
+    TODO("Not yet implemented")
 }
