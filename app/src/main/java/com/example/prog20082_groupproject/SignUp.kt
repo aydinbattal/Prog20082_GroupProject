@@ -84,8 +84,6 @@ class SignUp : AppCompatActivity() {
         user.email = edtEmail.text.toString()
         user.password = DataValidations().encryptPassword(edtPassword.text.toString())
         user.studentID = edtStudentId.text.toString()
-
-        var userViewModel = UserViewModel(this.application)
         userViewModel.insertAll(user)
         val homeIntent = Intent(this,HomeActivity::class.java)
         startActivity(homeIntent)
