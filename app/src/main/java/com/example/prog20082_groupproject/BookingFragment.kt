@@ -65,8 +65,10 @@ class BookingFragment : Fragment(), View.OnClickListener {
     }
 
     private fun goToLocation(){
-        val getLocationIntent = Intent(this, Map::class.java)
+        val getLocationIntent = Intent(this.context, Map::class.java)
         startActivity(getLocationIntent)
+        val campusName = getLocationIntent.getStringExtra("Username")
+        val roomNum = getLocationIntent.getStringExtra("Username")
     }
 
     override fun onClick(v: View?) {
@@ -79,10 +81,10 @@ class BookingFragment : Fragment(), View.OnClickListener {
                     this.fetchDateTime()
                 }
                 R.id.btnBook -> {
-                    newBooking.id = edtStudentId.text.toString()
-                    newBooking.amount = edtStudentAmt.text.toString()
-                    newBooking.location = tvBookingLocationChosen.text.toString()
-                    newBooking.duration = selectedDuration
+                    newBooking.studentID = edtStudentId.text.toString()
+                    newBooking.studentAmount = edtStudentAmt.text.toString().toInt()
+                    newBooking.campusName = tvBookingLocationChosen.text.toString()
+                    newBooking.duration = selectedDuration.toString()
 
                     Log.e(TAG, "New Booking : " + newBooking.toString())
 
@@ -96,7 +98,7 @@ class BookingFragment : Fragment(), View.OnClickListener {
     }
 
     private fun saveToDB(){
-        BookingViewModel().addBooking(newBooking)
+        BookingViewModel(this.requireActivity().application).updateBooking(newBooking)
     }
 
     private fun setUpSpinner(){
@@ -146,9 +148,9 @@ class BookingFragment : Fragment(), View.OnClickListener {
                             TimePickerDialog.OnTimeSetListener{ view, hourOfDay, minute ->
                                 calendar.set(year, month, dayOfMonth, hourOfDay, minute)
 
-                                val parkingDate = calendar.time
+                                val bookingTime = calendar.time
 
-                                newBooking.bookingTime = bookingTime
+                                newBooking.bookingDate = bookingTime.toString()
 
 //                https://developer.android.com/reference/java/text/DateFormat
                                 val df: DateFormat =
