@@ -1,3 +1,5 @@
+
+
 package com.example.prog20082_groupproject
 
 import android.Manifest
@@ -45,17 +47,17 @@ class LocationManager (var context: Context){
         if (locationPermissionsGranted){
             try{
                 this.fusedLocationProviderClient!!.lastLocation
-                    .addOnSuccessListener {loc: Location? ->
-                        //last location is available
-                        if (loc != null){
-                            location.value = loc
+                        .addOnSuccessListener {loc: Location? ->
+                            //last location is available
+                            if (loc != null){
+                                location.value = loc
 
-                            Log.e(TAG, "Last Location : " + location.value.toString())
+                                Log.e(TAG, "Last Location : " + location.value.toString())
+                            }
                         }
-                    }
-                    .addOnFailureListener { error ->
-                        Log.e(TAG, "error : " + error.localizedMessage)
-                    }
+                        .addOnFailureListener { error ->
+                            Log.e(TAG, "error : " + error.localizedMessage)
+                        }
             }catch (ex: SecurityException){
                 Log.e(TAG, "SecurityException : " + ex.localizedMessage)
             }
@@ -68,8 +70,8 @@ class LocationManager (var context: Context){
 
     private fun checkPermissions(){
         locationPermissionsGranted = (ContextCompat.checkSelfPermission(this.context.applicationContext,
-            android.Manifest.permission.ACCESS_FINE_LOCATION) ==
-                    PackageManager.PERMISSION_GRANTED)
+                android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED)
 
         Log.e(TAG, "locationPermissionsGranted " + locationPermissionsGranted.toString())
 
@@ -80,8 +82,8 @@ class LocationManager (var context: Context){
 
     private fun requestLocationPermission(){
         ActivityCompat.requestPermissions(this.context as Activity,
-        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
-        LOCATION_PERMISSION_REQUEST_CODE)
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE)
     }
 
     fun createLocationRequest(){
