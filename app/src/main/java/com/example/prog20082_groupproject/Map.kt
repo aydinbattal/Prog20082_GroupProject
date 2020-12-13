@@ -1,5 +1,6 @@
 package com.example.prog20082_groupproject
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.AnimationDrawable
 import android.location.Location
@@ -66,8 +67,7 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
             when(v.id){
                 btnContinue.id ->{
                     if (validateAnswer()){
-                        finish()
-                        startActivity(intent)
+
                     }
                 }
             }
@@ -85,6 +85,10 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
             return false
         }
         return true
+    }
+    private fun sendRoomSelection(){
+        val sendRoom = Intent(this, BookingFragment::class.java)
+        startActivity(BookingFragment)
     }
     override fun onPause() {
         super.onPause()
