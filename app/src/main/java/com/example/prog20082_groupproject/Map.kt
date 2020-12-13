@@ -89,8 +89,8 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
         return true
     }
     private fun sendRoomSelection(){
-        val sendRoomIntent = Intent(this, BookingFragment::class.java)
-        startActivity(sendRoomIntent)
+      //  val sendRoomIntent = Intent(this, BookingFragment::class.java)
+      //  startActivity(sendRoomIntent)
     }
     override fun onPause() {
         super.onPause()
@@ -148,7 +148,7 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
             googleMap.setOnMarkerClickListener { marker ->
                 if (marker.isInfoWindowShown) {
                     marker.hideInfoWindow()
-                    marker.s
+              //      marker.s
                 } else {
                     marker.showInfoWindow()
                 }
