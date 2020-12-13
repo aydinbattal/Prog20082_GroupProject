@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.fragment.findNavController
+import com.example.prog20082_groupproject.database.Booking
+import com.example.prog20082_groupproject.database.BookingViewModel
 import java.text.DateFormat
 import java.util.*
 

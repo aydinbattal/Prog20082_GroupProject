@@ -1,18 +1,32 @@
 package com.example.prog20082_groupproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import com.example.prog20082_groupproject.database.Booking
 import com.example.prog20082_groupproject.database.BookingViewModel
 import com.example.prog20082_groupproject.database.User
 
 class MainActivity : AppCompatActivity() {
     lateinit var bookingViewModel : BookingViewModel
+    private val SPLASH_TIME_OUT:Long = 3000 // 1 sec
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bookingViewModel = BookingViewModel(this.application)
         prePopulateBooking()
+
+
+        Handler().postDelayed({
+            // This method will be executed once the timer is over
+            // Start your app main activity
+
+            startActivity(Intent(this,MainActivity::class.java))
+
+            // close this activity
+            finish()
+        }, SPLASH_TIME_OUT)
 
     }
 
