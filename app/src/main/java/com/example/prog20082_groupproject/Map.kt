@@ -146,7 +146,6 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
             googleMap.setOnMarkerClickListener { marker ->
                 if (marker.isInfoWindowShown) {
                     marker.hideInfoWindow()
-                    marker.s
                 } else {
                     marker.showInfoWindow()
                 }
