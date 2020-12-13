@@ -3,4 +3,57 @@
 
     <string name="ccontinue">Continue</string>
 
+    <string name="login">Log in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forgot password?</string>
+    <string name="remember_me">Remember me</string>
+    <string name="create_account">Dont have an account? <i><u>Create one!</u></i></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="book">Book</string>
+    <string name="choose_location">Choose location</string>
+    <string name="student_id">Student ID</string>
+    <string name="student_amount">Amount of Students</string>
+    <string name="name">Student Name</string>
+    <string name="booking_time">Time</string>
+    <string name="booking_duration">Duration</string>
+    <string name="booking_location">Location</string>
+    <string name="save">Save</string>
+
+    <string name="date_placeholder">DD/MM/YYYY</string>
+    <string name="time_placeholder">HH:MM</string>
+    <string name="datetime_placeholder">dd/MMM/YYYY hh:mm</string>
+
+    <string-array name="duration_array">
+        <item>4 Hours</item>
+        <item>8 Hours</item>
+        <item>12 hours</item>
+        <item> Daily Max</item>
+    </string-array>
+
+    <string name="nav_header_title">Student Name</string>
+    <string name="nav_header_subtitle">student@sheridancollege.ca</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_history">History</string>
+    <string name="menu_receipt">View Receipts</string>
+    <string name="menu_support">Support</string>
+    <string name="menu_contact">Contact Us</string>
+
+    <string name="delete_account">Delete Account</string>
+    <string name="log_out">Log Out</string>
+    <string name="call">Call</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="app_name1">AdamTest</string>
+    <string name="signup_email">Email</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_StudId">Student Id</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="signup_firstName">First Name</string>\
+    <string name="signup_lastName">Last Name</string>
+    <string name="database_UserName">Database_User</string>
+    <string name="database_BookingName">Database_Booking</string>
 </resources>
