@@ -39,7 +39,7 @@ class BookingViewModel(application: Application) : AndroidViewModel(application)
         val booking : Booking? = bookingRepo.getBookingByCampusNandRoomN(campusName,roomNumber)
         matchedBooking?.postValue(booking)
     }
-    fun getUserByStudentID(campusName: String,roomNumber: String) : MutableLiveData<Booking>?{
+    fun getBookingByCampusNandRoomN(campusName: String,roomNumber: String) : MutableLiveData<Booking>?{
         getBookingC(campusName,roomNumber)
         return matchedBooking
     }

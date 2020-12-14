@@ -2,6 +2,7 @@ package com.example.prog20082_groupproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.prog20082_groupproject.database.Booking
 import com.example.prog20082_groupproject.database.BookingViewModel
 import com.example.prog20082_groupproject.database.User
