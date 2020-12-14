@@ -15,6 +15,8 @@
     <string name="booking_time">Time</string>
     <string name="booking_duration">Duration</string>
     <string name="booking_location">Location</string>
+    <string name="booking_campus">Campus</string>
+    <string name="booking_room">Room</string>
     <string name="save">Save</string>
 
     <string name="date_placeholder">DD/MM/YYYY</string>

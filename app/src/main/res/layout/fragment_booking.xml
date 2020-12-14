@@ -173,24 +173,38 @@
         app:layout_constraintTop_toBottomOf="@id/spnDuration" />
 
     <TextView
-        android:id="@+id/tvBookingLocationChosen"
+        android:id="@+id/tvBookedCampus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/edit_text_style"
         android:ems="10"
-        android:hint="@string/booking_location"
+        android:hint="@string/booking_campus"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@id/tvBookedRoom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBookingLocation" />
+
+    <TextView
+        android:id="@+id/tvBookedRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/edit_text_style"
+        android:ems="5"
+        android:hint="@string/booking_room"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvBookedCampus"
         app:layout_constraintTop_toBottomOf="@id/tvBookingLocation" />
 
     <Button
         android:id="@+id/btnChooseLocation"
-        android:layout_width="250dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:text="@string/choose_location"
         android:layout_marginTop="8dp"
@@ -199,7 +213,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/amaranth"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/tvBookingLocationChosen"
+        app:layout_constraintTop_toBottomOf="@id/tvBookedCampus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="1.0"

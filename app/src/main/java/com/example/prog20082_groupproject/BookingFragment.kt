@@ -11,8 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.fragment.findNavController
-import com.example.prog20082_groupproject.database.Booking
-import com.example.prog20082_groupproject.database.BookingViewModel
 import java.text.DateFormat
 import java.util.*
 
@@ -24,7 +22,8 @@ class BookingFragment : Fragment(), View.OnClickListener {
     private lateinit var edtStudentAmt: EditText
     private lateinit var edtTime: EditText
     private lateinit var spnDuration: Spinner
-    private lateinit var tvBookingLocationChosen: TextView
+    private lateinit var tvBookedCampus: TextView
+    private lateinit var tvBookedRoom: TextView
     private lateinit var btnBook: Button
 
     private var selectedDuration: Long = 1
@@ -41,7 +40,8 @@ class BookingFragment : Fragment(), View.OnClickListener {
 
         edtStudentId = root.findViewById(R.id.edtStudentId)
         edtStudentAmt = root.findViewById(R.id.edtStudentAmt)
-        tvBookingLocationChosen = root.findViewById(R.id.tvBookingLocationChosen)
+        tvBookedCampus = root.findViewById(R.id.tvBookedCampus)
+        tvBookedRoom = root.findViewById(R.id.tvBookedRoom)
         edtTime = root.findViewById(R.id.edtTime)
         edtTime.isFocusable = false
         edtTime.setOnClickListener(this)
@@ -69,8 +69,10 @@ class BookingFragment : Fragment(), View.OnClickListener {
     private fun goToLocation(){
         val getLocationIntent = Intent(this.context, Map::class.java)
         startActivity(getLocationIntent)
-        val campusName = getLocationIntent.getStringExtra("Username")
-        val roomNum = getLocationIntent.getStringExtra("Username")
+        val receivedCampN = getLocationIntent.getStringExtra("")
+        val receivedRoomN = getLocationIntent.getStringExtra("")
+        tvBookedCampus.text = receivedCampN
+        tvBookedRoom.text = receivedRoomN
     }
 
     override fun onClick(v: View?) {
@@ -83,21 +85,61 @@ class BookingFragment : Fragment(), View.OnClickListener {
                     this.fetchDateTime()
                 }
                 R.id.btnBook -> {
-                    newBooking.studentID = edtStudentId.text.toString()
-                    newBooking.studentAmount = edtStudentAmt.text.toString().toInt()
-                    newBooking.campusName = tvBookingLocationChosen.text.toString()
-                    newBooking.duration = selectedDuration.toString()
+                    if (this.validateData() && this.checkRoom()) {
+                        newBooking.studentID = edtStudentId.text.toString()
+                        newBooking.studentAmount = edtStudentAmt.text.toString().toInt()
+                        newBooking.campusName = tvBookedCampus.text.toString()
+                        newBooking.roomNumber = tvBookedRoom.text.toString()
+                        newBooking.duration = selectedDuration.toString()
 
-                    Log.e(TAG, "New Booking : " + newBooking.toString())
+                        Log.e(TAG, "New Booking : " + newBooking.toString())
 
-                    this.saveToDB()
+                        this.saveToDB()
 
-                    findNavController().navigateUp()
+                        findNavController().navigateUp()
+                    }
                 }
-
             }
         }
     }
+
+    private fun checkRoom() : Boolean{
+        val tempCamp = tvBookedCampus.text.toString()
+        val tempRoom = tvBookedRoom.text.toString()
+
+        userViewModel.getBookingByCampusNandRoomN(tempCamp, tempRoom)?.observe(this, {matchedLoc ->
+            if ( matchedLoc.studentID != ""){
+                //invalid
+                Toast.makeText(this, "This room is already booked. Please try booking another room!", Toast.LENGTH_LONG).show()
+                return false
+            } else {
+                //valid
+                return true
+            }
+    }
+
+
+    private fun validateData() : Boolean{
+        if (edtStudentId.text.isEmpty()){
+            edtStudentId.setError("Please enter a student id!")
+            return false
+        }
+        if (edtStudentAmt.text.isEmpty()){
+            edtStudentAmt.setError("Please enter the number of students!")
+            return false
+        }
+        if (tvBookedCampus.text.isEmpty()){
+            tvBookedCampus.setError("Please choose a campus!")
+            return false
+        }
+        if (tvBookedRoom.text.isEmpty()){
+            tvBookedRoom.setError("Please choose a room!")
+            return false
+        }
+
+        return true
+    }
+
 
     private fun saveToDB(){
         BookingViewModel(this.requireActivity().application).updateBooking(newBooking)

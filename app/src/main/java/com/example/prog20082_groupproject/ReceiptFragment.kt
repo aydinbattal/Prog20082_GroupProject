@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prog20082_groupproject.database.Booking
-import com.example.prog20082_groupproject.database.BookingViewModel
 
 class ReceiptFragment : Fragment(), OnItemClickListener {
     private lateinit var bookingViewModel : BookingViewModel
@@ -50,8 +48,7 @@ class ReceiptFragment : Fragment(), OnItemClickListener {
     override fun onResume() {
         super.onResume()
 
-        bookingViewModel.allBooking
-//        bookingViewModel.getAllBookings()
+        bookingViewModel.getAllBookings()
         this.getReceiptList()
     }
 
@@ -65,8 +62,8 @@ class ReceiptFragment : Fragment(), OnItemClickListener {
         })
     }
 
-    override fun onItemClicked(receipt: Booking) {
-        TODO("Not yet implemented")
-    }
+}
 
+override fun onItemClicked(receipt: Booking) {
+    TODO("Not yet implemented")
 }
