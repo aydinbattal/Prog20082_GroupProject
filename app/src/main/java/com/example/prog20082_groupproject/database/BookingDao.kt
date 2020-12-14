@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface BookingDao {
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg bookings:Booking)
 
     @Update
