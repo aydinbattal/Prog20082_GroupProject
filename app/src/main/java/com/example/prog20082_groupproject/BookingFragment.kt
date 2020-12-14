@@ -83,22 +83,45 @@ class BookingFragment : Fragment(), View.OnClickListener {
                     this.fetchDateTime()
                 }
                 R.id.btnBook -> {
-                    newBooking.studentID = edtStudentId.text.toString()
-                    newBooking.studentAmount = edtStudentAmt.text.toString().toInt()
-                    newBooking.campusName = tvBookedCampus.text.toString()
-                    newBooking.roomNumber = tvBookedRoom.text.toString()
-                    newBooking.duration = selectedDuration.toString()
+                    if (this.validateData()) {
+                        newBooking.studentID = edtStudentId.text.toString()
+                        newBooking.studentAmount = edtStudentAmt.text.toString().toInt()
+                        newBooking.campusName = tvBookedCampus.text.toString()
+                        newBooking.roomNumber = tvBookedRoom.text.toString()
+                        newBooking.duration = selectedDuration.toString()
 
-                    Log.e(TAG, "New Booking : " + newBooking.toString())
+                        Log.e(TAG, "New Booking : " + newBooking.toString())
 
-                    this.saveToDB()
+                        this.saveToDB()
 
-                    findNavController().navigateUp()
+                        findNavController().navigateUp()
+                    }
                 }
-
             }
         }
     }
+
+    private fun validateData() : Boolean{
+        if (edtStudentId.text.isEmpty()){
+            edtStudentId.setError("Please enter a student id!")
+            return false
+        }
+        if (edtStudentAmt.text.isEmpty()){
+            edtStudentAmt.setError("Please enter the number of students!")
+            return false
+        }
+        if (tvBookedCampus.text.isEmpty()){
+            tvBookedCampus.setError("Please choose a campus!")
+            return false
+        }
+        if (tvBookedRoom.text.isEmpty()){
+            tvBookedRoom.setError("Please choose a room!")
+            return false
+        }
+
+        return true
+    }
+
 
     private fun saveToDB(){
         BookingViewModel(this.requireActivity().application).updateBooking(newBooking)
