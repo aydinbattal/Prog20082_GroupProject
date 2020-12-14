@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.fragment.findNavController
+import com.example.prog20082_groupproject.database.Booking
+import com.example.prog20082_groupproject.database.BookingViewModel
 import java.text.DateFormat
 import java.util.*
 
@@ -107,15 +109,17 @@ class BookingFragment : Fragment(), View.OnClickListener {
         val tempCamp = tvBookedCampus.text.toString()
         val tempRoom = tvBookedRoom.text.toString()
 
-        userViewModel.getBookingByCampusNandRoomN(tempCamp, tempRoom)?.observe(this, {matchedLoc ->
+        bookingViewModel.getBookingByCampusNandRoomN(tempCamp, tempRoom)?.observe(this, {matchedLoc ->
             if ( matchedLoc.studentID != ""){
                 //invalid
-                Toast.makeText(this, "This room is already booked. Please try booking another room!", Toast.LENGTH_LONG).show()
-                return false
+                Toast.makeText(this.context, "This room is already booked. Please try booking another room!", Toast.LENGTH_LONG).show()
+
             } else {
                 //valid
-                return true
+
             }
+        })
+        return true
     }
 
 
