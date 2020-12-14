@@ -9,8 +9,15 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.prog20082_groupproject.database.Booking
+import com.example.prog20082_groupproject.database.BookingViewModel
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -20,9 +27,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_map.*
 
-class Map : AppCompatActivity(), OnMapReadyCallback {
+class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
     private val TAG = this@Map.toString()
     private lateinit var locationManager: LocationManager
     private lateinit var location: Location
@@ -33,25 +41,39 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
     val davisCampus = LatLng(43.6560, -79.7387)
     val hazelMcCallionCampus = LatLng(43.4692, -79.6986)
     val trafalgarCampus = LatLng(43.5912, -79.6480)
+    private lateinit var btnContinue: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//        setContentView(R.layout.activity_map)
+
+    }
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        val root = inflater.inflate(R.layout.activity_map, container, false)
 
 
-        val animDrawable = activity_map.background as AnimationDrawable
-        animDrawable.setEnterFadeDuration(10)
-        animDrawable.setExitFadeDuration(5000)
-        animDrawable.start()
+//        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 
 
-        this.locationManager = LocationManager(this@Map)
+//        val animDrawable = activity_map.background as AnimationDrawable
+//        animDrawable.setEnterFadeDuration(10)
+//        animDrawable.setExitFadeDuration(5000)
+//        animDrawable.start()
+
+
+        this.locationManager = LocationManager(this.requireActivity())
         this.currentLocation = LatLng(43.6560, -79.7387)
 
         if (LocationManager.locationPermissionsGranted){
             this.getLastLocation()
         }
-        val mapFragment  = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
+        val mapFragment  = childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
+//                supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         locationCallback = object : LocationCallback(){
@@ -64,18 +86,30 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
+
+        btnContinue = root.findViewById(R.id.btnContinue)
+        btnContinue.setOnClickListener(this)
+
+        return root
     }
 
-    fun onClick(v:View?){
+    override fun onClick(v:View?){
         if(v != null){
             when(v.id){
-                btnContinue.id ->{
+                R.id.btnContinue ->{
                     if (validateAnswer()){
-                        this.sendRoomSelection()
+                        tempBooking.tempRoom = radioGroup.checkedRadioButtonId.toString()
+                        BookingViewModel(this.requireActivity().application).updateBooking(tempBooking)
+                        findNavController().navigateUp()
+//                        this.sendRoomSelection()
                     }
                 }
             }
         }
+    }
+
+    companion object{
+        var tempBooking = Booking()
     }
 
     override fun onResume() {
@@ -84,18 +118,18 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
     }
     fun validateAnswer(): Boolean {
         if (radioGroup.checkedRadioButtonId == -1) {
-            val t = Toast.makeText(this@Map, "Please select at least one answer", Toast.LENGTH_SHORT)
+            val t = Toast.makeText(this.context, "Please select at least one answer", Toast.LENGTH_SHORT)
             t.show()
             return false
         }
         return true
     }
-    private fun sendRoomSelection(){
-        val sendRoomIntent = Intent(this, BookingFragment::class.java)
-        //todo: store room number and chosen campus in a variable and send them
-//        sendRoomIntent.putExtra(roomnumber.toString(),campusName.toString())
-        startActivity(sendRoomIntent)
-    }
+//    private fun sendRoomSelection(){
+//        val sendRoomIntent = Intent(this, BookingFragment::class.java)
+//        //todo: store room number and chosen campus in a variable and send them
+//        sendRoomIntent.putExtra("105","Trafalgar")
+//        startActivity(sendRoomIntent)
+//    }
     override fun onPause() {
         super.onPause()
         locationManager.fusedLocationProviderClient?.removeLocationUpdates(locationCallback)
@@ -124,7 +158,7 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun getLastLocation(){
-        this.locationManager.getLastLocation()?.observe(this, {loc: Location? ->
+        this.locationManager.getLastLocation()?.observe(this.viewLifecycleOwner, {loc: Location? ->
             if (loc != null){
                 this.location = loc
                 this.currentLocation = LatLng(location.latitude, location.longitude)

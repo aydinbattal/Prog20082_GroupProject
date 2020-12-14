@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.prog20082_groupproject.R
 
 
-@Database(entities = arrayOf(Booking::class),version = 1)
+@Database(entities = arrayOf(Booking::class),version = 2)
 abstract class BookingDataBase : RoomDatabase() {
 
     abstract fun bookingDao() : BookingDao

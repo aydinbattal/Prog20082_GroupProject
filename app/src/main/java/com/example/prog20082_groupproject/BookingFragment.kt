@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.example.prog20082_groupproject.database.Booking
 import com.example.prog20082_groupproject.database.BookingViewModel
+import kotlinx.android.synthetic.main.activity_map.*
 import java.text.DateFormat
 import java.util.*
 
@@ -68,20 +69,21 @@ class BookingFragment : Fragment(), View.OnClickListener {
 
     }
 
-    private fun goToLocation(){
-        val getLocationIntent = Intent(this.context, Map::class.java)
-        startActivity(getLocationIntent)
-        val receivedCampN = getLocationIntent.getStringExtra("")
-        val receivedRoomN = getLocationIntent.getStringExtra("")
-        tvBookedCampus.text = receivedCampN
-        tvBookedRoom.text = receivedRoomN
-    }
+//    private fun goToLocation(){
+//        val getLocationIntent = Intent(this.context, Map::class.java)
+//        startActivity(getLocationIntent)
+//        val receivedCampN = getLocationIntent.getStringExtra("")
+//        val receivedRoomN = getLocationIntent.getStringExtra("")
+//        tvBookedCampus.text = receivedCampN
+//        tvBookedRoom.text = receivedRoomN
+//    }
 
     override fun onClick(v: View?) {
         if (v != null) {
             when (v.id){
                 R.id.btnChooseLocation -> {
-                    this.goToLocation()
+                    findNavController().navigate(R.id.action_bookingFragment_to_mapFragment)
+//                    this.goToLocation()
                 }
                 R.id.edtTime -> {
                     this.fetchDateTime()

@@ -25,6 +25,11 @@
             app:destination="@id/receiptFragment"
             />
 
+        <action
+            android:id="@+id/action_nav_booking_to_map_fragment"
+            app:destination="@id/receiptFragment"
+            />
+
     </fragment>
 
     <fragment
@@ -38,12 +43,23 @@
         android:name="com.example.prog20082_groupproject.BookingFragment"
         android:label="@string/book"
         tools:layout="@layout/fragment_booking"
-        />
+        >
+        <action
+            android:id="@+id/action_bookingFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/receiptFragment"
         android:name="com.example.prog20082_groupproject.ReceiptFragment"
         android:label="@string/menu_receipt"
         tools:layout="@layout/fragment_receipt"
+        />
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.prog20082_groupproject.Map"
+        android:label="@string/menu_receipt"
+        tools:layout="@layout/activity_map"
         />
 </navigation>
