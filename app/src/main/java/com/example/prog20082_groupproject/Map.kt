@@ -93,7 +93,7 @@ class Map : AppCompatActivity(), OnMapReadyCallback {
     private fun sendRoomSelection(){
         val sendRoomIntent = Intent(this, BookingFragment::class.java)
         //todo: store room number and chosen campus in a variable and send them
-        sendRoomIntent.putExtra(roomnumber.toString(),campusName.toString())
+//        sendRoomIntent.putExtra(roomnumber.toString(),campusName.toString())
         startActivity(sendRoomIntent)
     }
     override fun onPause() {

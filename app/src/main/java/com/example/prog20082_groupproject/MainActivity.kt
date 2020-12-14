@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //todo: find a way to prepopulate, this doesnt work
-//        bookingViewModel = BookingViewModel(this.application)
-//        prePopulateBooking()
+        bookingViewModel = BookingViewModel(this.application)
+        prePopulateBooking()
 
         // This is used to hide the status bar and make
         // the splash screen as a full screen activity.
