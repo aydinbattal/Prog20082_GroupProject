@@ -69,8 +69,10 @@ class BookingFragment : Fragment(), View.OnClickListener {
     private fun goToLocation(){
         val getLocationIntent = Intent(this.context, Map::class.java)
         startActivity(getLocationIntent)
-        val campusName = getLocationIntent.getStringExtra("Username")
-        val roomNum = getLocationIntent.getStringExtra("Username")
+        val receivedCampN = getLocationIntent.getStringExtra("")
+        val receivedRoomN = getLocationIntent.getStringExtra("")
+        tvBookedCampus.text = receivedCampN
+        tvBookedRoom.text = receivedRoomN
     }
 
     override fun onClick(v: View?) {
@@ -83,7 +85,7 @@ class BookingFragment : Fragment(), View.OnClickListener {
                     this.fetchDateTime()
                 }
                 R.id.btnBook -> {
-                    if (this.validateData()) {
+                    if (this.validateData() && this.checkRoom()) {
                         newBooking.studentID = edtStudentId.text.toString()
                         newBooking.studentAmount = edtStudentAmt.text.toString().toInt()
                         newBooking.campusName = tvBookedCampus.text.toString()
@@ -100,6 +102,22 @@ class BookingFragment : Fragment(), View.OnClickListener {
             }
         }
     }
+
+    private fun checkRoom() : Boolean{
+        val tempCamp = tvBookedCampus.text.toString()
+        val tempRoom = tvBookedRoom.text.toString()
+
+        userViewModel.getBookingByCampusNandRoomN(tempCamp, tempRoom)?.observe(this, {matchedLoc ->
+            if ( matchedLoc.studentID != ""){
+                //invalid
+                Toast.makeText(this, "This room is already booked. Please try booking another room!", Toast.LENGTH_LONG).show()
+                return false
+            } else {
+                //valid
+                return true
+            }
+    }
+
 
     private fun validateData() : Boolean{
         if (edtStudentId.text.isEmpty()){
