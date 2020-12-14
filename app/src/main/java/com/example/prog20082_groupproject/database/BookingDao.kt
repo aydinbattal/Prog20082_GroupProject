@@ -20,4 +20,7 @@ interface BookingDao {
 
     @Query("SELECT * FROM Bookings WHERE campusName LIKE :campusName AND roomNumber LIKE :roomNumber")
     fun getBookingByCampusNandRoomN(campusName:String, roomNumber:String) : Booking?
+
+    @Query("SELECT * FROM Bookings WHERE tempCampus LIKE :tempCampus AND tempRoom LIKE :tempRoom")
+    fun getBookingTemp(tempCampus:String, tempRoom:String) : Booking?
 }

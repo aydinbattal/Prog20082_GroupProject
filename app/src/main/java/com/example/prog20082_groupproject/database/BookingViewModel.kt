@@ -43,4 +43,13 @@ class BookingViewModel(application: Application) : AndroidViewModel(application)
         getBookingC(campusName,roomNumber)
         return matchedBooking
     }
+
+    private fun getBookingTC(tempCampus:String,tempRoom:String) = viewModelScope.launch(Dispatchers.IO) {
+        val booking : Booking? = bookingRepo.getBookingTemp(tempCampus,tempRoom)
+        matchedBooking?.postValue(booking)
+    }
+    fun getBookingByTemp(tempCampus: String,tempRoom: String) : MutableLiveData<Booking>?{
+        getBookingTC(tempCampus,tempRoom)
+        return matchedBooking
+    }
 }

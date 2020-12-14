@@ -11,7 +11,9 @@ data class Booking(
     @ColumnInfo(name = "studentAmount") var studentAmount: Int?,
     @ColumnInfo(name = "duration") var duration: String?,
     @ColumnInfo(name = "timeSlot") var timeSlot: String?,
-    @ColumnInfo(name = "bookingDate") var bookingDate: String?
+    @ColumnInfo(name = "bookingDate") var bookingDate: String?,
+    @ColumnInfo(name = "tempCampus") var tempCampus: String?,
+    @ColumnInfo(name = "tempRoom") var tempRoom: String?
 ) {
     constructor() : this(
         "",
@@ -20,6 +22,8 @@ data class Booking(
         0,
         "",
         "",
-        ""
+        "",
+            "",
+            ""
     )
 }

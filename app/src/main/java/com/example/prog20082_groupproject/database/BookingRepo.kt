@@ -22,4 +22,7 @@ class BookingRepo(
     suspend fun getBookingByCampusNandRoomN(campusName:String,roomNumber:String) : Booking?{
         return bookingDao.getBookingByCampusNandRoomN(campusName,roomNumber)
     }
+    suspend fun getBookingTemp(tempCampus:String,tempRoom:String) : Booking?{
+        return bookingDao.getBookingTemp(tempCampus,tempRoom)
+    }
 }
