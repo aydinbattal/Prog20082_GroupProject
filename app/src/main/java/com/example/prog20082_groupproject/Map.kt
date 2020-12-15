@@ -13,6 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -42,6 +44,9 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
     val hazelMcCallionCampus = LatLng(43.4692, -79.6986)
     val trafalgarCampus = LatLng(43.5912, -79.6480)
     private lateinit var btnContinue: Button
+
+    var radioGroup: RadioGroup? = null
+    var selectedRadioButton: RadioButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +95,17 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
         btnContinue = root.findViewById(R.id.btnContinue)
         btnContinue.setOnClickListener(this)
 
+        radioGroup = root.findViewById(R.id.radioGroup)
+        val selectedOption: Int = radioGroup!!.checkedRadioButtonId
+
+
+
+        if (radioGroup?.checkedRadioButtonId!=-1) {
+            this.selectedRadioButton = root.findViewById(selectedOption)
+        }
+
+
+
         return root
     }
 
@@ -98,7 +114,7 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
             when(v.id){
                 R.id.btnContinue ->{
                     if (validateAnswer()){
-                        tempBooking.tempRoom = radioGroup.checkedRadioButtonId.toString()
+                        tempBooking.tempRoom = selectedRadioButton?.text.toString()
                         BookingViewModel(this.requireActivity().application).updateBooking(tempBooking)
                         findNavController().navigateUp()
 //                        this.sendRoomSelection()
@@ -117,7 +133,7 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
         locationManager.requestLocationUpdates(locationCallback)
     }
     fun validateAnswer(): Boolean {
-        if (radioGroup.checkedRadioButtonId == -1) {
+        if (radioGroup?.checkedRadioButtonId == -1) {
             val t = Toast.makeText(this.context, "Please select at least one answer", Toast.LENGTH_SHORT)
             t.show()
             return false

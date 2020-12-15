@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.prog20082_groupproject.database.Booking
 import com.example.prog20082_groupproject.database.BookingViewModel
@@ -28,11 +29,12 @@ class BookingFragment : Fragment(), View.OnClickListener {
     private lateinit var tvBookedCampus: TextView
     private lateinit var tvBookedRoom: TextView
     private lateinit var btnBook: Button
+    private lateinit var btnUpdate: Button
 
     private var selectedDuration: Long = 1
     private val durationValues: Array<Long> = arrayOf(1, 2, 3)
 
-    private lateinit var bookingViewModel: BookingViewModel
+    private val bookingViewModel: BookingViewModel by activityViewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -52,7 +54,9 @@ class BookingFragment : Fragment(), View.OnClickListener {
         btnChooseLocation = root.findViewById(R.id.btnChooseLocation)
         btnChooseLocation.setOnClickListener(this)
         btnBook = root.findViewById(R.id.btnBook)
-        btnChooseLocation.setOnClickListener(this)
+        btnBook.setOnClickListener(this)
+        btnUpdate = root.findViewById(R.id.btnUpdate)
+        btnUpdate.setOnClickListener(this)
 
         this.setCurrentDateTime()
         this.setUpSpinner()
@@ -83,7 +87,18 @@ class BookingFragment : Fragment(), View.OnClickListener {
             when (v.id){
                 R.id.btnChooseLocation -> {
                     findNavController().navigate(R.id.action_bookingFragment_to_mapFragment)
+
 //                    this.goToLocation()
+                }
+                R.id.btnUpdate -> {
+                    bookingViewModel.allBooking.observe(viewLifecycleOwner,{
+                        for (temp in it){
+                            if (temp.tempRoom != ""){
+//                                Log.e(TAG, "room : " + temp.tempRoom.toString())
+                                tvBookedRoom.setText(temp.tempRoom)
+                            }
+                        }
+                    })
                 }
                 R.id.edtTime -> {
                     this.fetchDateTime()
