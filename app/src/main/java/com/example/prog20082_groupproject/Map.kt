@@ -2,11 +2,8 @@
 
 package com.example.prog20082_groupproject
 
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.drawable.AnimationDrawable
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -29,7 +25,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_map.*
 
 class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
@@ -45,8 +40,9 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
     val trafalgarCampus = LatLng(43.5912, -79.6480)
     private lateinit var btnContinue: Button
 
-    var radioGroup: RadioGroup? = null
     var selectedRadioButton: RadioButton? = null
+
+    private var rootView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +55,7 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.activity_map, container, false)
+        rootView = inflater.inflate(R.layout.activity_map, container, false)
 
 
 //        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -92,32 +88,23 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
             }
         }
 
-        btnContinue = root.findViewById(R.id.btnContinue)
+        btnContinue = rootView!!.findViewById(R.id.btnContinue)
         btnContinue.setOnClickListener(this)
 
-        radioGroup = root.findViewById(R.id.radioGroup)
-        val selectedOption: Int = radioGroup!!.checkedRadioButtonId
-
-
-
-        if (radioGroup?.checkedRadioButtonId!=-1) {
-            this.selectedRadioButton = root.findViewById(selectedOption)
-        }
-
-
-
-        return root
+        return rootView
     }
 
-    override fun onClick(v:View?){
+    override fun onClick(v: View?){
         if(v != null){
             when(v.id){
-                R.id.btnContinue ->{
-                    if (validateAnswer()){
+                R.id.btnContinue -> {
+                    if (validateAnswer()) {
+                        val selectedOption: Int = radioGroup!!.checkedRadioButtonId
+                        this.selectedRadioButton = rootView?.findViewById(selectedOption)
+
                         tempBooking.tempRoom = selectedRadioButton?.text.toString()
                         BookingViewModel(this.requireActivity().application).updateBooking(tempBooking)
                         findNavController().navigateUp()
-//                        this.sendRoomSelection()
                     }
                 }
             }
@@ -140,12 +127,7 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
         }
         return true
     }
-//    private fun sendRoomSelection(){
-//        val sendRoomIntent = Intent(this, BookingFragment::class.java)
-//        //todo: store room number and chosen campus in a variable and send them
-//        sendRoomIntent.putExtra("105","Trafalgar")
-//        startActivity(sendRoomIntent)
-//    }
+
     override fun onPause() {
         super.onPause()
         locationManager.fusedLocationProviderClient?.removeLocationUpdates(locationCallback)
@@ -162,7 +144,7 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
                 LocationManager.locationPermissionsGranted = (grantResults.isNotEmpty() &&
                         grantResults[0] == PackageManager.PERMISSION_GRANTED)
 
-                if (LocationManager.locationPermissionsGranted){
+                if (LocationManager.locationPermissionsGranted) {
                     //location available
                     //try to fetch the location
 
@@ -174,8 +156,8 @@ class Map : Fragment(), OnMapReadyCallback, View.OnClickListener {
     }
 
     private fun getLastLocation(){
-        this.locationManager.getLastLocation()?.observe(this.viewLifecycleOwner, {loc: Location? ->
-            if (loc != null){
+        this.locationManager.getLastLocation()?.observe(this.viewLifecycleOwner, { loc: Location? ->
+            if (loc != null) {
                 this.location = loc
                 this.currentLocation = LatLng(location.latitude, location.longitude)
 
